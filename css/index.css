@@ -20,7 +20,7 @@
 
 html, body{
     height: 100%;
-    background-color: var(--dark-green);
+    background-color: var(--midnight);
 }
 
 .hidden{
@@ -104,7 +104,18 @@ html, body{
         }
     }
     .square{
-        background-color: purple;
+        height: 100%;
+        width: 100%;
+        background-color: var(--dark-green);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        &:hover{
+            cursor: pointer;
+            opacity: 90%;
+        }
     }
     .score{
         background-color: white;
