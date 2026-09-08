@@ -32,9 +32,24 @@
         <div class="square shadow"></div>
         <div class="square shadow"></div>
         <div class="square shadow"></div>
-        <div class="score"></div>
-        <div class="score"></div>
-        <div class="score"></div>
+        <div class="score shadow ps1">
+          <p>Player 1</p>
+          <span data-id="player1-stats">0 Wins</span>
+        </div>
+        <div class="score shadow stats">
+          <p>Ties</p>
+          <span data-id="ties">0</span>
+        </div>
+        <div class="score shadow ps2">
+          <p>Player 2</p>
+          <span data-id="player2-stats">0 Wins</span>
+        </div>
+      </div>
+      <div class="modal hidden">
+        <div class="modal-contents">
+          <p>Player 1 wins!</p>
+          <button>Play again</button>
+        </div>
       </div>
     </main>
     <footer>

@@ -30,6 +30,19 @@ html, body{
 .yellow{
     color: var(--yellow-action);
 }
+
+button:hover{
+    cursor: pointer;
+    opacity: 90%;
+}
+
+.ps2{
+    background-color: var(--yellow-action)!important;
+}
+
+.ps1{
+    background-color: var(--green)!important;
+}
 .shadow{
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -119,6 +132,20 @@ html, body{
     }
     .score{
         background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        border-radius: 10px;
+        p{
+            font-size: 14px;
+            font-weight: 600;
+        }
+        span{
+            font-size: 12px;
+            margin-top: 2px;
+        }
     }
     .actions{
         background-color: green;
@@ -167,4 +194,35 @@ footer{
         opacity: 100%
         transform: translateX(0);
     }
+}
+
+.modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); 
+    .modal-contents{
+        transform: translateY(-80px);
+        height: 150px;
+        width: 100%;
+        max-width: 300px;
+        background-color: var(--dark-green);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: white;
+        margin: 10px;
+        button{
+            padding: 10px;
+            background-color: var(--light-green);
+            color: color;
+            border-radius: 3px;
+        }
+    } 
 }
