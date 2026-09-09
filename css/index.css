@@ -31,6 +31,10 @@ html, body{
     color: var(--yellow-action);
 }
 
+.green{
+    color: var(--green);
+}
+
 button:hover{
     cursor: pointer;
     opacity: 90%;
