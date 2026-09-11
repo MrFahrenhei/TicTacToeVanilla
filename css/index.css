@@ -101,7 +101,7 @@ button:hover{
     grid-template-rows: 50px repeat(3, 80px) 60px;
     gap: 5px;
     .turn{
-        color: var(--yellow-action);
+        /*color: var(--yellow-action);*/
         grid-column-start: 1;
         grid-column-end: 3;
         display: flex;
@@ -195,7 +195,7 @@ footer{
         transform: translateX(-20px);
     }
     100%{
-        opacity: 100%
+        opacity: 100%;
         transform: translateX(0);
     }
 }
@@ -225,7 +225,7 @@ footer{
         button{
             padding: 10px;
             background-color: var(--light-green);
-            color: color;
+            color: var(--dark-green);
             border-radius: 3px;
         }
     } 
