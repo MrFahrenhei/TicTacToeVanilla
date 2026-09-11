@@ -178,10 +178,17 @@ function init(){
         let player2wins = store.stats.playerWithStats[1].wins;
         let ties = store.stats.ties;
         view.updateScoreboard(player1wins, player2wins, ties);
-
     });
+
     view.bindNewRoundEvent(event => {
-        console.log('new round event');
+        store.newRound();
+        view.closeAll();
+        view.clearMoves();
+        view.setTurnIndicator(store.game.currentPlayer);
+        let player1wins = store.stats.playerWithStats[0].wins;
+        let player2wins = store.stats.playerWithStats[1].wins;
+        let ties = store.stats.ties;
+        view.updateScoreboard(player1wins, player2wins, ties);
     });
     view.bindPlayerMoveEvent((square) => {
         const existingMove = store.game.moves.find(
