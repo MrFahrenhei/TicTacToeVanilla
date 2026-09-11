@@ -1,3 +1,6 @@
+import View from './view.js';
+import Store from "./store.js";
+
 // player can make a game move
 // new round
 // reset current game
@@ -10,7 +13,6 @@
 //best practices when developing user interfaces
 // 1 global scope and namespaces
 // 2 stable selectors (data-* attr)
-
 // namespace kind of
 const App = {
     // all of our selected html elements
@@ -30,8 +32,8 @@ const App = {
         moves: []
     },
     getGameStatus(moves){
-        const p1Moves = moves.filter(move => move.playerId==1).map(move => +move.squareId);
-        const p2Moves = moves.filter(move => move.playerId==2).map(move => +move.squareId);
+        const p1Moves = moves.filter(move => move.playerId===1).map(move => +move.squareId);
+        const p2Moves = moves.filter(move => move.playerId===2).map(move => +move.squareId);
         // check if there is a winner or tie game
         const winningPatterns = [
             [1, 2, 3],
@@ -123,9 +125,8 @@ const App = {
                     playerId: currentPlayer
                 });
                 App.state.currentPlayer = currentPlayer === 1 ? 2 : 1;
-
+                
                 square.replaceChildren(squareIcon);
-
                 const game = App.getGameStatus(App.state.moves);
                 if(game.status === 'complete'){
                     App.$.modal.classList.remove('hidden');
@@ -142,5 +143,47 @@ const App = {
     }
     
 }
-
+/*
 window.addEventListener('load', App.init);
+*/
+
+const players = [
+    {
+        id: 1,
+        name: "Player 1",
+        iconClass: "fa-x",
+        colorClass: "green",
+    },
+    {
+        id: 2,
+        name: "Player 2",
+        iconClass: "fa-o",
+        colorClass: "yellow",
+    }
+];
+
+function init(){
+    const view = new View();
+    const store = new Store(players);
+
+    view.bindGameResetEvent(event => {
+        console.log('reset event');
+        console.log(event);
+    });
+    view.bindNewRoundEvent(event => {
+        console.log('new round event');
+    });
+    view.bindPlayerMoveEvent((square) => {
+        const existingMove = store.game.moves.find(
+            (move)=> move.squareId === +square.id
+        );
+        if(existingMove){
+            return;
+        }
+        view.handlePlayerMove(square, store.game.currentPlayer);
+        store.playerMove(+square.id);
+        view.setTurnIndicator(store.game.currentPlayer);
+    })
+   // console.log(view.$.turn);
+}
+window.addEventListener('load', init);
