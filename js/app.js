@@ -167,8 +167,13 @@ function init(){
     const store = new Store(players);
 
     view.bindGameResetEvent(event => {
-        console.log('reset event');
-        console.log(event);
+       view.closeAll();
+
+       store.reset();
+
+       view.clearMoves();
+
+       view.setTurnIndicator(store.game.currentPlayer)
     });
     view.bindNewRoundEvent(event => {
         console.log('new round event');
@@ -182,8 +187,11 @@ function init(){
         }
         view.handlePlayerMove(square, store.game.currentPlayer);
         store.playerMove(+square.id);
+        if(store.game.status.isComplete){
+            view.openModal(store.game.status.winner ? `${store.game.status.winner.name} wins!`:"Tie!");
+            return;
+        }
         view.setTurnIndicator(store.game.currentPlayer);
     })
-   // console.log(view.$.turn);
 }
 window.addEventListener('load', init);

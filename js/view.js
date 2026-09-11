@@ -22,6 +22,7 @@ export default class View{
     bindGameResetEvent(handler)
     {
         this.$.resetBtn.addEventListener('click', handler);
+        this.$.modalBtn.addEventListener('click', handler);
     };
 
     bindNewRoundEvent(handler){
@@ -34,21 +35,42 @@ export default class View{
     }
 
     openModal(message){
-
+        this.$.modal.classList.remove("hidden");
+        this.$.modalText.innerText = message;
     }
 
+    closeAll(){
+        this.#closeModal();
+        this.#closeMenu();
+    }
+
+    clearMoves(){
+        this.$$.squares.forEach((square) => {
+            square.replaceChildren();
+        })
+    }
+
+    #closeMenu(){
+        this.$.menuItems.classList.add("hidden");
+        this.$.menuBtn.classList.remove("border");
+        const icon = this.$.menuBtn.querySelector('i');
+        icon.classList.add('fa-chevron-down');
+        icon.classList.remove('fa-chevron-up');
+    }
+
+    #closeModal(){
+        this.$.modal.classList.add("hidden");
+    }
     // Dom helpers methods
     #toggleMenu(){
         this.$.menuItems.classList.toggle('hidden');
         this.$.menuBtn.classList.toggle('border'); // this can be made with css only
         const icon = this.$.menuBtn.querySelector('i');
-        icon.classList.toggle('fa-chevron-down');
-        icon.classList.toggle('fa-chevron-up');
+
     }
 
     handlePlayerMove(squareEl, player){
        const icon = document.createElement("i");
-       console.log(player);
        icon.classList.add('fa-solid', player.iconClass, player.colorClass );
        squareEl.replaceChildren(icon);
     }

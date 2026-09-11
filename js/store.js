@@ -25,7 +25,7 @@ export default class Store {
                 (move) => move.player.id === player.id
             ).map(move => move.squareId);
 
-            for(const pattern of selectedSquareIds){
+            for(const pattern of winningPatterns){
                 if(pattern.every(v=>selectedSquareIds.includes(v))){
                     winner = player;
                 }
@@ -34,7 +34,7 @@ export default class Store {
         return {
             moves: state.moves,
             currentPlayer,
-            states: {
+            status: {
                 isComplete: winner != null || state.moves.length === 9,
                 winner,
             }
@@ -49,6 +49,10 @@ export default class Store {
             player: this.game.currentPlayer,
         });
         this.#saveState(stateClone);
+    }
+
+    reset(){
+        this.#saveState(initialValue);
     }
 
     #getState(){
