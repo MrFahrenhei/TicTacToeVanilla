@@ -11,6 +11,9 @@ export default class View{
         this.$.modalText =  this.#qs('[data-id="modal-text"]');
         this.$.modalBtn =  this.#qs('[data-id="modal-btn"]');
         this.$.turn =  this.#qs('[data-id="turn"]');
+        this.$.p1Wins = this.#qs('[data-id="p1-wins"]');
+        this.$.p2Wins = this.#qs('[data-id="p2-wins"]');
+        this.$.ties = this.#qs('[data-id="ties"]');
         this.$$.squares =  this.#qsAll('[data-id="square"]');
         // ui-only
         this.$.menuBtn.addEventListener('click', (event)=>{
@@ -32,6 +35,14 @@ export default class View{
         this.$$.squares.forEach((square) => {
             square.addEventListener('click', ()=>handler(square));
         })
+    }
+
+    // DOM helpers
+
+    updateScoreboard(p1Wins, p2Wins, ties){
+        this.$.p1Wins.innerText = `${p1Wins} wins`
+        this.$.p2Wins.innerText = `${p2Wins} wins`
+        this.$.ties.innerText = `${ties} wins`
     }
 
     openModal(message){
