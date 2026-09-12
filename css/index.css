@@ -168,7 +168,7 @@ footer{
     }
 }
 
-@media (min-width: 768px){
+@media (min-width: 600px){
     .grid{
         width: 490px;
         grid-template-columns: repeat(3, 150px);
@@ -229,4 +229,22 @@ footer{
             border-radius: 3px;
         }
     } 
+}
+
+@media (max-width:600px)  {
+    .grid{
+        width: 340px;
+        grid-template-columns: repeat(3, 110px);
+        grid-template-rows: 50px repeat(3, 110px) 60px;
+        gap: 10px;
+    }
+}
+
+@media (max-width:376px)  {
+    .grid{
+        width: 200px;
+        grid-template-columns: repeat(3, 65px);
+        grid-template-rows: 50px repeat(3, 65px) 60px;
+        gap: 10px;
+    }
 }
